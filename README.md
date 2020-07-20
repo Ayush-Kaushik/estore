@@ -1,4 +1,5 @@
 # estore
 Simple java application that simulates an estore
 
-Update- anisha kaushik
+Update: Anisha Kaushik
+Update: Ayush Kaushik
