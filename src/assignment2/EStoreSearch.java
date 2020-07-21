@@ -7,7 +7,6 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.InputMismatchException;
-import java.util.Set;
 
 /**
  * @author Ayush Kaushik 0931551 Assignment 2 
@@ -34,8 +33,6 @@ public class EStoreSearch {
             System.out.println("Not enough arguments");
             System.exit(0);
         }
-        
-              
     }
     
     

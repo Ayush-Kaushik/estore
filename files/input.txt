@@ -1,0 +1,7 @@
+type = "book"
+productID = "123456"
+name = "ayushbook"
+price = "123.200000"
+year = "1995"
+authors = "ayush"
+publisher = "ayush"
