@@ -1,0 +1,205 @@
+================================================================================
+NAME: Ayush Kaushik
+STUDENT NUMBER: 0931551
+ASSIGNMENT NUMBER: 2
+DATE: November 9, 2016
+================================================================================
+
+COMPILATION
+===========
+On Netbeans =
+Load the file in Netbeans and click on “Run” option.
+To provide the command line arguments click on run the program once.
+It will display following output on screen:
+				Not enough arguments
+Click on the left double yellow arrow. This will open a pop up menu where you can manually enter command line argument.
+Now run the file using run file command in the drop down list of “Run” option.
+
+
+**** IMPORTANT —> to run the program only input one command line argument and that too the right file name *******
+
+On Terminal->
+	Follow this path - ->  ** include the java compilation method here ***
+		
+	Here user will find all the files with .java extensions
+	To compile:
+			
+	
+	To run the file type in:
+					
+* NOTE - For program to accept the input file. It has to be in the main program directory. (definitely not inside src, readme or javadoc folder) *
+ 
+
+USAGE
+=====
+When the user runs the program.
+
+Case 1:
+=======
+If user simply runs the program without providing any arguments. Following message pop-up:
+				Not enough arguments
+And the program quits.
+
+Case 2:
+=======
+When the user provides wrong command line argument - A file that does not exist.Following message pops up:
+							Problem opening files
+And the program quits.
+		
+Case 3:
+========
+When command line argument is correct and the file does exist in the directory.
+	%%%  IMPORTANT - The user is assured that program has successfully stored the file contents correctly and the program starts as mentioned below  %%%
+
+The following command prompt appears:
+
+	-------Welcome to E-Search --------
+	Select the numbers corresponding to the options below: (1)Add (2)Search (3)Quit
+
+User can select one of the three options.
+
+	* REMEMBER: user can enter the number corresponding to command or type the command itself such as add for adding, search for searching and quit for quitting the program *
+
+
+WHEN USER SELECTS: (1)Add 
+~~~~~~~~~~~~~~~~~~~~~~~~~
+Following command prompt appears when user selects 1:
+
+				Selected option: Add
+
+				Enter the corresponding number to select the type of item:
+				(1)Book (2)Electronic
+
+(Now, user can choose to add a book or an electronic item)
+* REMEMBER - to select the option only enter the number corresponding to the option. For example - 1 for adding, 2 for searching and 3 for quitting - (Mentioned in limitations also)*
+
+Command prompts when user wants to add a Book:
+				
+				Enter the corresponding number to select the type of item:
+				(1)Book (2)Electronic
+				1
+				Enter the ID:
+				123456
+				Enter the name of the item:
+				XXX
+				Enter the year:
+				1234
+				Enter the price of item or leave blank: 
+				12
+				Enter the author of item or leave blank:  
+				William
+				Enter the Publisher of item or leave blank: 
+				Shakespeare
+
+
+*IMPORTANT*
+~User input is mandatory for: 
+	-ID
+	-name
+	-year 
+
+~User input is optional for:
+	-author
+	-price
+	-publisher
+
+~User cannot enter negative value for price. 
+~ID has be 6 digits long else system rejects it.
+~If user enters ID that already exits in the system. Following message will appear:
+					*** ID already exists in the list ***
+
+
+Command prompts when user wants to add an Electronic item:
+
+				Enter the corresponding number to select the type of item:
+				(1)Book (2)Electronic
+				2
+				Enter the ID:
+				132435
+				Enter the name of the item:
+				XXX
+				Enter the year:
+				1234
+				Enter the price of item or leave blank:  
+				22
+				Enter the Maker of item or leave blank: 
+				Macbook
+
+
+*IMPORTANT*
+~User input is mandatory for: 
+	-ID
+	-name
+	-year 
+
+~User input is optional for:
+	-maker
+	-price
+
+
+
+WHEN USER SELECTS (2)Search
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+					
+					Welcome to E-Search
+					Select the numbers corresponding to the options below:
+					(1)Add
+					(2)Search
+					(3)Quit
+					2
+					Selected option: Search
+
+					Enter the specs for product and find the matching products.
+					Do you wish to enter the product ID: (1) Yes (2) No 
+					1
+					Enter the product ID: 
+					123456
+					Do you wish to enter product name: (1)Yes (2)No
+					1
+					Enter the product name: 
+					qwe
+					user entered: awe
+					Do you wish to enter product year:
+					(1)Yes (2)No
+					1
+					Enter the product year: 
+					1234
+
+
+Based on the input values, the lists are filtered to produce the most accurate result.
+
+
+
+TO QUIT, FOLLOWING USER INPUTS WORK:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	3, q, Q, quit, Quit, QUIT
+
+					-------Welcome to E-Search --------
+					Select the numbers corresponding to the options below: (1)Add (2)Search (3)Quit
+					QUIT
+					Selected option Quit
+
+					Successful write to file
+
+LIMITATION:
+~~~~~~~~~~~~
+* If the user leaves the price blank then following message appears: 
+			*** Enter numbers values only ***
+
+* I am not sure if it counts as limitation because leaving price blank will actually make the price equal to 0.00 . Its just that this message appears.
+
+* Only the main command loop (Welcome to EStoreSearch) has the option to perform action by typing the command itself, for the rest of the loops user has to enter the number corresponding to the option.
+
+* If user wants to add 0.00 as the price of the item, then don’t type it in 0.00 and press Enter. Instead leave it blank and program will input 0.00 by itself.
+
+* I have commented out some code chunks and print statements used solely for testing. In case program does not works as expected. Kindly read those for part marks. Thanks.
+
+* try and catch methodology have not been used for error checking in some methods, this is because I reused those methods from my previous assignment.
+
+Explanation and References
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Applied the knowledge learned in lectures and labs.
+* Learned from the code used in chapter 10 from Java Textbook for output data in a file using file outPutStream.
+* Used methods from previous assignment and lab assignment and created new ones based on some previous methods (Lab assignments and Assignment 1)
+* www.stackoverflow.com
+
