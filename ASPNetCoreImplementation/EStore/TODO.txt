@@ -1,0 +1,7 @@
+﻿TO DO
+
+- Add authorization to the backend for login functionality support
+- Work on each endpoint
+- Document the learnings from this project in the README file
+- Mention about the NodeJS issue and setup required
+- Learn how to make SWAGGER page for the API automatically for better coding practice
