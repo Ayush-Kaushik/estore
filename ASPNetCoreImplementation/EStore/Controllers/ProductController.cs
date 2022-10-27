@@ -20,6 +20,7 @@ namespace EStore.Controllers
         }
 
         // GET: ProductController
+        [HttpGet]
         public IEnumerable<Product> Index()
         {
             return this._productRepository.GetAllProducts();

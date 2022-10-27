@@ -1,26 +1,108 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useTable } from 'react-table'
 
-export class Home extends Component {
-  static displayName = Home.name;
+function Home() {
 
-  render () {
-    return (
-      <div>
-        <h1>Hello, world!</h1>
-        <p>Welcome to your new single-page application, built with:</p>
-        <ul>
-          <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-          <li><a href='https://facebook.github.io/react/'>React</a> for client-side code</li>
-          <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
-        </ul>
-        <p>To help you get started, we have also set up:</p>
-        <ul>
-          <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-          <li><strong>Development server integration</strong>. In development mode, the development server from <code>create-react-app</code> runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
-          <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration produces minified, efficiently bundled JavaScript files.</li>
-        </ul>
-        <p>The <code>ClientApp</code> subdirectory is a standard React application based on the <code>create-react-app</code> template. If you open a command prompt in that directory, you can run <code>npm</code> commands such as <code>npm test</code> or <code>npm install</code>.</p>
-      </div>
+    const [data, setData] = useState([]);
+
+    const columns = React.useMemo(
+        () => [
+            {
+                Header: 'ID',
+                accessor: 'ID',
+            },
+            {
+                Header: 'Product Code',
+                accessor: 'ProductCode',
+            },
+            {
+                Header: 'Name',
+                accessor: 'Name',
+            },
+            {
+                Header: 'Barcode',
+                accessor: 'Barcode',
+            },
+            {
+                Header: 'Description',
+                accessor: 'Description',
+            },
+            {
+                Header: 'Image',
+                accessor: 'ProductImageUrl',
+            },
+            {
+                Header: 'Price',
+                accessor: 'Price',
+            },
+        ],
+        []
     );
-  }
+
+    async function populateProductData() {
+        const response = await fetch('api/product');
+        const data = await response.json();
+        setData(data);
+    }
+
+    useEffect(() => {
+        populateProductData();
+    }, [data]);
+
+    const {
+        getTableProps,
+        getTableBodyProps,
+        headerGroups,
+        rows,
+        prepareRow,
+    } = useTable({ columns, data })
+
+    return (
+        <table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
+            <thead>
+                {headerGroups.map(headerGroup => (
+                    <tr {...headerGroup.getHeaderGroupProps()}>
+                        {headerGroup.headers.map(column => (
+                            <th
+                                {...column.getHeaderProps()}
+                                style={{
+                                    borderBottom: 'solid 3px red',
+                                    background: 'aliceblue',
+                                    color: 'black',
+                                    fontWeight: 'bold',
+                                }}
+                            >
+                                {column.render('Header')}
+                            </th>
+                        ))}
+                    </tr>
+                ))}
+            </thead>
+            <tbody {...getTableBodyProps()}>
+                {rows.map(row => {
+                    prepareRow(row)
+                    return (
+                        <tr {...row.getRowProps()}>
+                            {row.cells.map(cell => {
+                                return (
+                                    <td
+                                        {...cell.getCellProps()}
+                                        style={{
+                                            padding: '10px',
+                                            border: 'solid 1px gray',
+                                            background: 'papayawhip',
+                                        }}
+                                    >
+                                        {cell.render('Cell')}
+                                    </td>
+                                )
+                            })}
+                        </tr>
+                    )
+                })}
+            </tbody>
+        </table>
+    );
 }
+
+export default Home;
