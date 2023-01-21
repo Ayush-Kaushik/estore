@@ -1,7 +1,0 @@
-type = "electronics"
-productID = "123455"
-name = "anisha"
-price = "123.000000"
-year = "1999"
-maker = ""
- 
