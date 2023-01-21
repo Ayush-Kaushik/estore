@@ -1,21 +1,36 @@
 package com.crm.prototype.customer;
 
-public class Customer {
+import jakarta.persistence.*;
 
+@Entity
+public class CustomerEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String firstName;
-    private String lastName;
-    private String country;
-    private String Address;
-    private String Number;
 
-    public Customer(int id, String firstName, String lastName, String country, String address, String number) {
+    @Column(name = "firstname")
+    private String firstName;
+
+    @Column(name="lastname")
+    private String lastName;
+
+    @Column(name="country")
+    private String country;
+
+    @Column(name="address")
+    private String address;
+
+    @Column(name = "phonenumber")
+    private String phoneNumber;
+
+    public CustomerEntity(int id, String firstName, String lastName, String country, String address, String phonenumber) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.country = country;
-        Address = address;
-        Number = number;
+        this.address = address;
+        this.phoneNumber = phonenumber;
     }
 
     public int getId() {
@@ -35,11 +50,11 @@ public class Customer {
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     public String getNumber() {
-        return Number;
+        return phoneNumber;
     }
 
     public void setId(int id) {
@@ -59,11 +74,11 @@ public class Customer {
     }
 
     public void setAddress(String address) {
-        Address = address;
+        address = address;
     }
 
     public void setNumber(String number) {
-        Number = number;
+        phoneNumber = number;
     }
 
     @Override
@@ -73,8 +88,8 @@ public class Customer {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", country='" + country + '\'' +
-                ", Address='" + Address + '\'' +
-                ", Number='" + Number + '\'' +
+                ", Address='" + address + '\'' +
+                ", Number='" + phoneNumber + '\'' +
                 '}';
     }
 }
