@@ -2,9 +2,8 @@ package com.crm.prototype.customer;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,5 +25,14 @@ public class CustomerController {
                 .stream()
                 .map(customer -> modelMapper.map(customer, CustomerDTO.class))
                 .collect(Collectors.toList());
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public String createCustomer(@RequestBody CustomerCreateDTO customerDetails) {
+        CustomerEntity customer = modelMapper.map(customerDetails, CustomerEntity.class);
+        customerService.createCustomer(customer);
+        return "Saved";
     }
 }

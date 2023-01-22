@@ -24,14 +24,8 @@ public class CustomerEntity {
     @Column(name = "phonenumber")
     private String phoneNumber;
 
-    public CustomerEntity(int id, String firstName, String lastName, String country, String address, String phonenumber) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.country = country;
-        this.address = address;
-        this.phoneNumber = phonenumber;
-    }
+    @Column(name = "email")
+    private String email;
 
     public int getId() {
         return id;
@@ -53,8 +47,12 @@ public class CustomerEntity {
         return address;
     }
 
-    public String getNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void setId(int id) {
@@ -77,19 +75,11 @@ public class CustomerEntity {
         address = address;
     }
 
-    public void setNumber(String number) {
+    public void setPhoneNumber(String number) {
         phoneNumber = number;
     }
 
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", country='" + country + '\'' +
-                ", Address='" + address + '\'' +
-                ", Number='" + phoneNumber + '\'' +
-                '}';
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

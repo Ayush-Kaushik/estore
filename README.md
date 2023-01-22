@@ -29,3 +29,19 @@ Email Address
 ## Stage 3:
 * [ ] Once the repository has enough information, make it public with wiki pages enabled and all the information transferred
 * [ ] Make this repository public and add it as a SpringBoot experience section for future employers
+
+
+
+### Important links
+
+- https://spring.io/guides/gs/accessing-data-mysql/
+- https://andriperera.medium.com/create-a-rest-api-in-spring-boot-with-mysql-b250ff3aaa9b
+- https://www.javaguides.net/2021/02/spring-boot-dto-example-entity-to-dto.html
+
+
+
+### Tasks in progress
+- find out why null is saved in database
+
+### Future maybe
+- create an executable that could be run anywhere
