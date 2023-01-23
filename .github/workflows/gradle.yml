@@ -10,7 +10,9 @@ jobs:
         with:
           java-version: 19
           distribution: 'adopt'
-      - name: Runn unit tests'
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+      - name: Run unit tests'
         run: ./gradlew clean test --info
       - name: Build with Gradle
         run: ./gradlew build
