@@ -25,7 +25,7 @@ public class MapperTests extends TestCase {
         customerCreateDTO.setCountry("test");
         customerCreateDTO.setFirstName("test");
         customerCreateDTO.setLastName("test");
-        customerCreateDTO.setPhonenumber("123-456-7890");
+        customerCreateDTO.setPhoneNumber("123-456-7890");
 
         CustomerEntity customerEntity = modelMapper.map(customerCreateDTO, CustomerEntity.class);
 
@@ -40,7 +40,6 @@ public class MapperTests extends TestCase {
     public void checkCustomerEntityToCustomerDTOMapper() {
         CustomerEntity customerEntity = new CustomerEntity();
 
-        customerEntity.setId(123);
         customerEntity.setAddress("test address");
         customerEntity.setCountry("test");
         customerEntity.setFirstName("test");
@@ -49,12 +48,27 @@ public class MapperTests extends TestCase {
 
         CustomerDTO customerDTO = modelMapper.map(customerEntity, CustomerDTO.class);
 
-        Assert.assertEquals(customerDTO.getId(), customerEntity.getId());
-        Assert.assertEquals(customerDTO.getAddress(), customerEntity.getAddress());
-        Assert.assertEquals(customerDTO.getFirstName(), customerEntity.getFirstName());
+        Assert.assertEquals(customerEntity.getAddress(), customerDTO.getAddress());
+        Assert.assertEquals(customerEntity.getFirstName(), customerDTO.getFirstName());
         Assert.assertEquals(customerDTO.getLastName(), customerEntity.getLastName());
         Assert.assertEquals(customerDTO.getCountry(), customerEntity.getCountry());
     }
 
+    @Test
+    public void checkCustomerEntityToCreateCustomerDTOMapper() {
+        CustomerEntity customerEntity = new CustomerEntity();
 
+        customerEntity.setAddress("test address");
+        customerEntity.setCountry("test");
+        customerEntity.setFirstName("test");
+        customerEntity.setLastName("test");
+        customerEntity.setPhoneNumber("123-456-7890");
+
+        CustomerCreateDTO customerCreateDTO = modelMapper.map(customerEntity, CustomerCreateDTO.class);
+
+        Assert.assertEquals(customerEntity.getAddress(), customerCreateDTO.getAddress());
+        Assert.assertEquals(customerEntity.getFirstName(), customerCreateDTO.getFirstName());
+        Assert.assertEquals(customerCreateDTO.getLastName(), customerEntity.getLastName());
+        Assert.assertEquals(customerCreateDTO.getCountry(), customerEntity.getCountry());
+    }
 }

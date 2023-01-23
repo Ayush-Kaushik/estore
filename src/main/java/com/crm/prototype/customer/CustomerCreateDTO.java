@@ -1,12 +1,39 @@
 package com.crm.prototype.customer;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
+
 public class CustomerCreateDTO {
+
+    @Getter
+    @NotNull
     private int id;
+
+    @Getter
+    @Setter
     private String firstName;
+
+    @Getter
+    @Setter
     private String lastName;
+
+    @Getter
+    @Setter
     private String country;
+
+    @Getter
+    @Setter
+    @NotEmpty
     private String address;
-    private String phonenumber;
+
+    @Getter
+    @Setter
+    private String phoneNumber;
+
+    @Getter
+    @Setter
     private String email;
 
     public CustomerCreateDTO() {
@@ -19,64 +46,7 @@ public class CustomerCreateDTO {
         this.lastName = lastName;
         this.country = country;
         this.address = address;
-        this.phonenumber = phonenumber;
+        this.phoneNumber = phonenumber;
         this.email = email;
-    }
-
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getPhonenumber() {
-        return phonenumber;
-    }
-
-    public String getEmail() {
-        return email;
     }
 }

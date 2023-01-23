@@ -35,4 +35,13 @@ public class CustomerController {
         customerService.createCustomer(customer);
         return "Saved";
     }
+
+    @PutMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public String updateCustomer(@RequestBody CustomerCreateDTO customerDetails) {
+        CustomerEntity customer = modelMapper.map(customerDetails, CustomerEntity.class);
+        customerService.createCustomer(customer);
+        return "Saved";
+    }
 }
