@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,6 +32,16 @@ public class CustomerService {
     }
 
     public void updateCustomer(CustomerUpdateDTO customerUpdateDTO) {
+        Optional<CustomerEntity> optionalCustomerEntity = customerRepository.findById(customerUpdateDTO.getId());
+        CustomerEntity customerEntity = optionalCustomerEntity.get();
 
+        customerEntity.setFirstName(customerUpdateDTO.getFirstName());
+        customerEntity.setLastName(customerUpdateDTO.getLastName());
+        customerEntity.setPhoneNumber(customerUpdateDTO.getPhoneNumber());
+        customerEntity.setAddress(customerUpdateDTO.getAddress());
+        customerEntity.setCountry(customerUpdateDTO.getCountry());
+        customerEntity.setEmail(customerUpdateDTO.getEmail());
+
+        customerRepository.save(customerEntity);
     }
 }
