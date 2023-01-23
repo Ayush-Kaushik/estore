@@ -12,7 +12,12 @@ jobs:
           distribution: 'adopt'
       - name: Make gradlew executable
         run: chmod +x ./gradlew
-      - name: Run unit tests'
-        run: ./gradlew clean test --info
+      - name: Run junit tests
+        run: ./gradlew clean test --info --tests com.crm.prototype.MapperTests
+      - name: Publish Test Report # https://github.com/marketplace/actions/junit-report-action
+          uses: mikepenz/action-junit-report@v3
+          if: always()
+          with:
+            report_paths: '/home/runner/work/estore/estore/build/reports/tests/test/index.html'
       - name: Build with Gradle
         run: ./gradlew build
