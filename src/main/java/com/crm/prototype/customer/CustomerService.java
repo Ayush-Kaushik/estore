@@ -26,6 +26,12 @@ public class CustomerService {
                 .collect(Collectors.toList());
     }
 
+    public CustomerDTO getCustomerById(int id) {
+        Optional<CustomerEntity> optionalCustomerEntity = customerRepository.findById(id);
+        CustomerEntity customerEntity = optionalCustomerEntity.get();
+        return modelMapper.map(customerEntity, CustomerDTO.class);
+    }
+
     public void createCustomer(CustomerCreateDTO customerCreateDTO) {
         CustomerEntity customerEntity = modelMapper.map(customerCreateDTO, CustomerEntity.class);
         customerRepository.save(customerEntity);

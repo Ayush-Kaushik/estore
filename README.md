@@ -3,14 +3,15 @@ _________________________________
 
 ## Stage 1
 * [x] Setup directory structure for Java application
-* [x] Set up gradle
+* [x] Set up ~~gradle~~ Maven (found it much easier to work with)
 * [ ] document the setup process
 * [x] Add a test endpoint
 * [ ] Document the entire process in wiki page of this repository
 * [x] Setup a simple database table
 * [x] Make connection to the database
-* [ ] Understand components of Spring-bbot application
-* [ ] Connect this to Github actions to build an executable (https://tomgregory.com/build-gradle-projects-with-github-actions/) - Document this process
+* [ ] Understand components of Spring-boot application
+* [x] Connect this to Github actions to build an executable (https://tomgregory.com/build-gradle-projects-with-github-actions/) - Document this process
+* [ ] Document the entire JWT Auth workflow based on this: https://www.youtube.com/watch?v=KxqlJblhzfI
 
 
 ## Stage 2:
@@ -18,7 +19,6 @@ _________________________________
 * [ ] This service will not have a UI, so only API endpoints will be visible
 * [ ] Find something like SwaggerAPI tp show all the endpoints
 * [ ] Add validation to the endpoints
-
 
 ## Stage 3:
 * [ ] Once the repository has enough information, make it public with wiki pages enabled and all the information transferred
@@ -49,3 +49,8 @@ ______________________________________________________________________________
 - create an executable that could be run anywhere
 
 ______________________________________________________________________________
+
+### Guides covered
+
+- [x] https://spring.io/guides/gs/accessing-data-mysql/
+- 

@@ -1,0 +1,22 @@
+# NOTES
+# =====
+# url: the url has the database after slash
+# ddl-auto: decides what happens to the database at the spring application startup we have picked update as it updates schema based on changes
+# show-sql: display what query is performed
+# database-platform" helps Spring in performance of queries
+
+spring:
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3307/crm
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: springuser
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+      database: mysql
+      database-platform: org.hibernate.dialect.MySQL5InnoDBDialect

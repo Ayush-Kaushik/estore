@@ -19,6 +19,11 @@ public class CustomerController {
                 .getAllCustomers();
     }
 
+    @GetMapping("/{id}")
+    public CustomerDTO getCustomerById(@PathVariable int id) {
+        return customerService.getCustomerById(id);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
