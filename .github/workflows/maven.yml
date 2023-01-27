@@ -15,8 +15,8 @@ jobs:
 
       - name: Build project with Maven
         run: |
-        mvn -B package --file pom.xml -Dmaven.test.skip
-        mkdir staging && cp target/*.jar staging
+          mvn -B package --file pom.xml -Dmaven.test.skip
+          mkdir staging && cp target/*.jar staging
 
       - name: Persist generated data as artifacts
         uses: actions/upload-artifact@v2
