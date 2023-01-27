@@ -1,7 +1,7 @@
 name: CI
 on: [push]
 jobs:
-  build-and-test:
+  build-package:
 
     runs-on: ubuntu-latest
 
@@ -14,4 +14,17 @@ jobs:
           distribution: 'adopt'
 
       - name: Build project with Maven
-        run: mvn -B package --file pom.xml
+        run: |
+        mvn -B package --file pom.xml -Dmaven.test.skip
+        mkdir staging && cp target/*.jar staging
+
+      - name: Persist generated data as artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: github-actions-artifact
+          path: staging
+
+      - name: Publish package
+        run: mvn --batch-mode deploy -Dmaven.test.skip
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}

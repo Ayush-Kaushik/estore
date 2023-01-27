@@ -8,16 +8,30 @@
 		<version>3.0.2</version>
 		<relativePath/>
 	</parent>
+
 	<groupId>com.crm</groupId>
 	<artifactId>prototype</artifactId>
 	<version>0.0.1-PROTOTYPE</version>
+	<packaging>jar</packaging>
+
 	<name>CustomerRelationshipManagementTool</name>
 	<description>CRM built to learn Spring Boot</description>
+
 	<properties>
 		<java.version>19</java.version>
 	</properties>
-	<dependencies>
 
+
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub Packages</name>
+			<url>https://maven.pkg.github.com/Ayush-Kaushik/estore</url>
+		</repository>
+	</distributionManagement>
+
+
+	<dependencies>
 		<!-- Service dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
