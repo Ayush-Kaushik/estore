@@ -1,10 +1,10 @@
-package com.crm.prototype;
+package com.crm.prototype.unittests;
 
 import com.crm.prototype.customer.CustomerCreateDTO;
 import com.crm.prototype.customer.CustomerDTO;
 import com.crm.prototype.customer.CustomerEntity;
-import junit.framework.Assert;
 import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
 
