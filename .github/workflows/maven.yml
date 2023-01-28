@@ -25,7 +25,7 @@ jobs:
         uses: mikepenz/action-junit-report@v3
         if: success() || failure()
         with:
-          reports_path: '**/target/sunfire-reports/TEST-*.xml'
+          reports_paths: '**/target/sunfire-reports/TEST-*.xml'
 
       - name: Build project with Maven
         run: |
