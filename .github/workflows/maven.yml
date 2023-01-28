@@ -12,6 +12,21 @@ jobs:
         with:
           java-version: 19
           distribution: 'adopt'
+          cache: maven
+          # This will cache the content of local Maven repository
+          # The key for the cache is hashed content of pom.xml
+          # When content changes, the cache is invalidated
+
+      - name: Run tests with Maven
+        run: |
+          mvn -B test --file pom.xml
+          mkdir reports && cp target/site
+
+      - name: Persist generated reports as artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: github-actions-artifact
+          path: staging
 
       - name: Build project with Maven
         run: |

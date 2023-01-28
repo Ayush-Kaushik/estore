@@ -2,10 +2,12 @@ package com.crm.prototype.customer;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "customer")
+@NoArgsConstructor // this is added for unit test case: canMapCustomerCreateDTOToCustomerEntity
 public class CustomerEntity {
 
     @Id
@@ -29,4 +31,13 @@ public class CustomerEntity {
 
     @Column(name = "email")
     private String email;
+
+    public CustomerEntity(String firstName, String lastName, String country, String address, String phoneNumber, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.country = country;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
 }

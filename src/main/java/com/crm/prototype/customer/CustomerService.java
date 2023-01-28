@@ -1,5 +1,6 @@
 package com.crm.prototype.customer;
 
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@AllArgsConstructor
 @Service
 public class CustomerService {
 
@@ -28,6 +30,12 @@ public class CustomerService {
 
     public CustomerDTO getCustomerById(int id) {
         Optional<CustomerEntity> optionalCustomerEntity = customerRepository.findById(id);
+        CustomerEntity customerEntity = optionalCustomerEntity.get();
+        return modelMapper.map(customerEntity, CustomerDTO.class);
+    }
+
+    public CustomerDTO getCustomerByEmail(String email) {
+        Optional<CustomerEntity> optionalCustomerEntity = customerRepository.findByEmail(email);
         CustomerEntity customerEntity = optionalCustomerEntity.get();
         return modelMapper.map(customerEntity, CustomerDTO.class);
     }

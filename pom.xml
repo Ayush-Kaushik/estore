@@ -16,6 +16,7 @@
 
 	<name>CustomerRelationshipManagementTool</name>
 	<description>CRM built to learn Spring Boot</description>
+	<url>https://github.com/Ayush-Kaushik/estore</url>
 
 	<properties>
 		<java.version>19</java.version>
@@ -29,8 +30,8 @@
 		</repository>
 	</distributionManagement>
 
+	<!-- Service dependencies -->
 	<dependencies>
-		<!-- Service dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -81,6 +82,12 @@
 			<version>3.1.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- JWT dependencies -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
@@ -105,6 +112,9 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
+			<!-- Notes: clicking the artifactId redirects to another pom.xml which already has
+				testing related dependencies requires so we do not need to add those separately
+				some test dependencies: mockito, assertJ etc. -->
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -114,15 +124,20 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
 	<build>
+		<!-- With excluding flag, we can remove specific resources -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<excludes>
+					<exclude>**/application.yml</exclude>
+				</excludes>
+			</resource>
+		</resources>
+
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

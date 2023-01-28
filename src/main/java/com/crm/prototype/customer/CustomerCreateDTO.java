@@ -22,4 +22,13 @@ public class CustomerCreateDTO {
     private String phoneNumber;
 
     private String email;
+
+    public CustomerCreateDTO(String firstName, String lastName, String country, String address, String phoneNumber, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.country = country;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
 }
