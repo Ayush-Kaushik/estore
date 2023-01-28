@@ -20,13 +20,12 @@ jobs:
       - name: Run tests with Maven
         run: |
           mvn -B test --file pom.xml surefire-report:report site -DgenerateReports=false
-          mkdir reports && cp target/site
 
-      - name: Persist generated reports as artifacts
-        uses: actions/upload-artifact@v2
+      - name: Publish Test Results
+        uses: mikepenz/action-junit-report@v3
+        if: success() || failure()
         with:
-          name: github-actions-artifact
-          path: staging
+          reports_path: '**/target/sunfire-reports/TEST-*.xml'
 
       - name: Build project with Maven
         run: |
