@@ -7,8 +7,8 @@ _________________________________
 * [x] Setup directory structure for Java application
 * [x] Get ~~gradle~~ Maven working in IntelliJ (found it much easier to work with)
 * [ ] Document the setup process (Anatomy of pom.xml etc.)
-* [ ] Add sample unit tests (https://www.youtube.com/watch?v=Geq60OVyBPg)
-* [ ] Add sample integration tests (https://www.youtube.com/watch?v=Geq60OVyBPg)
+* [x] Add sample unit tests (https://www.youtube.com/watch?v=Geq60OVyBPg)
+* [x] Add sample integration tests (https://www.youtube.com/watch?v=Geq60OVyBPg)
 
 ### API setup
 * [x] Get the API running
@@ -22,11 +22,12 @@ _________________________________
 ### Concepts covered
 * [ ] Understand and document components of Spring-boot application
 * [ ] Document the entire JWT Auth workflow based on this: https://www.youtube.com/watch?v=KxqlJblhzfI
+* [ ] Document my learnings related to creating tests, github actions and uploaded test
 
 ### Deployment setup
 * [x] Connect this to Github actions to build an executable (https://tomgregory.com/build-gradle-projects-with-github-actions/)
-* [ ] Run the unit and integration test as a stage inside GitHub actions
-* [ ] Generate report and publish that as an artifact 
+* [x] Run the unit and integration test as a stage inside GitHub actions
+* [x] Generate report and publish that as an artifact
 * [ ] Add a feature for user to externally provide the config file required to run the application
 
 ---------------------------------
@@ -39,6 +40,7 @@ _________________________________
 ### API setup
 * [ ] Create integration test for all endpoints created in Stage 1
 * [ ] Add validation interceptors for the endpoints
+* [ ] Add tests for all service endpoints (unit and integration with comments)
   
 ### Front-end SPA setup
 * [ ] Setup a front-end React SPA for this service
@@ -52,6 +54,7 @@ _________________________________
 * [ ] Find out how the service with React SPA could be deployed
 * [ ] Find out if the two could be separated as two packages (one with Frontend and API only)
 * [ ] Introduce caching to reduce deployment time
+* [ ] Since GitHub actions take up resources, separate the workflow steps based on which branch the information is pushed on
 
 ----------------------------------
 
@@ -95,3 +98,27 @@ ______________________________________________________________________________
 ### Guides covered
 
 - [x] https://spring.io/guides/gs/accessing-data-mysql/
+
+----------------------------------------------------------------------------
+
+### Testing Guidelines
+
+- Integration test classes are suffixed with IT
+- Unit test classes are suffixed with Test
+- Performing this to reduce the overhead of running integration test with each push to develop branch
+
+----------------------------------------------------------------------------
+
+### Actions Workflow
+
+### Develop
+
+- Applies for PR and direct push
+
+* [ ] Only run unit tests - upload the test run artifacts
+* [ ] Do not create a package unless manually specified in a re-run
+* [ ] If a user really wants to run integration tests then they can run it on their own local machines
+
+### Main/ Master
+* [ ] Run both unit and integration tests
+* [ ] Create a package

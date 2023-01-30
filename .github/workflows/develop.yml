@@ -1,0 +1,37 @@
+name: DevWorkflow
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  run-tests:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 19
+        uses: actions/setup-java@v3
+        with:
+          java-version: 19
+          distribution: 'adopt'
+          cache: maven
+          # This will cache the content of local Maven repository
+          # The key for the cache is hashed content of pom.xml
+          # When content changes, the cache is invalidated
+
+      - name: Run Unit Tests
+        run: |
+          mvn -B test --file pom.xml surefire-report:report site -DgenerateReports=false -Dmaven.test.failure.ignore=true -Dtest=**/*Test.java
+
+      - name: Publish Test Results
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Maven Tests
+          path: target/surefire-reports/*.xml
+          reporter: java-junit
+          fail-on-error: true
+        # the action to upload the reports were found here: https://www.octopus.com/blog/githubactions-running-unit-tests

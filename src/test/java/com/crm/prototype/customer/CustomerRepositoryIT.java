@@ -10,7 +10,7 @@ import java.util.Optional;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DataJpaTest // this creates the test database and autowires the repository as well
-class CustomerRepositoryTest {
+class CustomerRepositoryIT {
 
     @Autowired
     private CustomerRepository underTest;

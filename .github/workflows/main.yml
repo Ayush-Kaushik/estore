@@ -1,5 +1,11 @@
-name: CI
-on: [push]
+name: ProdWorkflow
+
+on:
+  push:
+    branches:
+      - master
+      - main
+
 jobs:
   run-tests-build-package:
 
@@ -17,7 +23,7 @@ jobs:
           # The key for the cache is hashed content of pom.xml
           # When content changes, the cache is invalidated
 
-      - name: Run tests with Maven
+      - name: Run Unit & Integration Tests
         run: |
           mvn -B test --file pom.xml surefire-report:report site -DgenerateReports=false -Dmaven.test.failure.ignore=true
 
@@ -29,6 +35,7 @@ jobs:
           path: target/surefire-reports/*.xml
           reporter: java-junit
           fail-on-error: true
+        # the action to upload the reports were found here: https://www.octopus.com/blog/githubactions-running-unit-tests
 
       - name: Build project with Maven
         run: |

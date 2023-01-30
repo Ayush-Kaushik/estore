@@ -5,7 +5,7 @@ import org.modelmapper.ModelMapper;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class CustomerMapperTests {
+public class CustomerMapperTest {
 
     private static final ModelMapper modelMapper = new ModelMapper();
 
