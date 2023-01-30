@@ -1,0 +1,54 @@
+name: ProdWorkflow
+
+on:
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  run-tests-build-package:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 19
+        uses: actions/setup-java@v3
+        with:
+          java-version: 19
+          distribution: 'adopt'
+          cache: maven
+          # This will cache the content of local Maven repository
+          # The key for the cache is hashed content of pom.xml
+          # When content changes, the cache is invalidated
+
+      - name: Run Unit & Integration Tests
+        run: |
+          mvn -B test --file pom.xml surefire-report:report site -DgenerateReports=false -Dmaven.test.failure.ignore=true
+
+      - name: Publish Test Results
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Maven Tests
+          path: target/surefire-reports/*.xml
+          reporter: java-junit
+          fail-on-error: true
+        # the action to upload the reports were found here: https://www.octopus.com/blog/githubactions-running-unit-tests
+
+      - name: Build project with Maven
+        run: |
+          mvn -B package --file pom.xml -Dmaven.test.skip
+          mkdir staging && cp target/*.jar staging
+
+      - name: Persist generated data as artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: github-actions-artifact
+          path: staging
+
+      - name: Publish package
+        run: mvn --batch-mode deploy -Dmaven.test.skip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
