@@ -11,7 +11,7 @@
 
 	<groupId>com.crm</groupId>
 	<artifactId>prototype</artifactId>
-	<version>0.0.4-PROTOTYPE</version>
+	<version>0.0.1-PROTOTYPE</version>
 	<packaging>jar</packaging>
 
 	<name>CustomerRelationshipManagementTool</name>

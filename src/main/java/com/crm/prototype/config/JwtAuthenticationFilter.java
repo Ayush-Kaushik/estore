@@ -1,12 +1,15 @@
 package com.crm.prototype.config;
 
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -18,6 +21,9 @@ import java.io.IOException;
 @Component
 @RequiredArgsConstructor // create a constructor with any field we declare
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
+
+    private final UserDetailsService userDetailsService;
+    private final JwtService jwtService;
 
     /**
      * We can intercept incoming request and provide additional data to outgoing response
@@ -36,8 +42,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
 
-        final JwtService jwtService = new JwtService();
-
         final String authHeader = request.getHeader("Authorization");
         final String jwtToken;
         final String userEmail;
@@ -49,5 +53,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         jwtToken = authHeader.substring(7);
         userEmail = jwtService.extractUsername(jwtToken);
+
+        if(userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.crm.prototype.serviceuser;
+package com.crm.prototype.accountuser;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,8 +19,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "serviceuser") // if we do not provide the table name via this annotation then class name will be used as one
-public class ServiceUser implements UserDetails {
+@Table(name = "accountuser") // if we do not provide the table name via this annotation then class name will be used as one
+public class AccountUserEntity implements UserDetails {
 
     @Id // tells that this field is a unique identifier for the ServiceUser entity - primary key
     @GeneratedValue(strategy = GenerationType.UUID) // this will make the ID auto-generated if the value is null
