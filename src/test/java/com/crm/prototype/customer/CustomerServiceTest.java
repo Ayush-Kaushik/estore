@@ -31,9 +31,13 @@ class CustomerServiceTest {
     }
 
     @Test
-    void canGetAllCustomers() {
+    void canGetAllCustomersOnSpecificPage() {
+        Integer pageNumber = 10;
+        Integer pageSize = 10;
+        String sortBy = "email";
+
         // when
-        underTest.getAllCustomers();
+        underTest.getAllCustomers(pageNumber, pageSize, sortBy);
 
         // then
         verify(customerRepository).findAll();

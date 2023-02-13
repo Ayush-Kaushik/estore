@@ -14,9 +14,13 @@ public class CustomerController {
     private CustomerService customerService;
 
     @GetMapping
-    public List<CustomerDTO> getCustomers() {
+    public List<CustomerDTO> getCustomers(
+            @RequestParam(defaultValue = "0") Integer pageNumber,
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            @RequestParam(defaultValue = "id") String sortBy
+    ) {
         return customerService
-                .getAllCustomers();
+                .getAllCustomers(pageNumber, pageSize, sortBy);
     }
 
     @GetMapping("/{id}")

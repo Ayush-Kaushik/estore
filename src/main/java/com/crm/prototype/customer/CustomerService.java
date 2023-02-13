@@ -3,8 +3,13 @@ package com.crm.prototype.customer;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,13 +24,19 @@ public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    public List<CustomerDTO> getAllCustomers() {
-        List<CustomerEntity> customerEntities = customerRepository.findAll();
+    public List<CustomerDTO> getAllCustomers(Integer pageNumber, Integer pageSize, String sortBy) {
+        Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy));
 
-        return customerEntities
-                .stream()
-                .map(customer -> modelMapper.map(customer, CustomerDTO.class))
-                .collect(Collectors.toList());
+        Page<CustomerEntity> pagedResult = customerRepository.findAll(paging);
+
+        if(pagedResult.hasContent()) {
+            return pagedResult
+                    .stream()
+                    .map(customer -> modelMapper.map(customer, CustomerDTO.class))
+                    .collect(Collectors.toList());
+        }
+
+        return new ArrayList<CustomerDTO>();
     }
 
     public CustomerDTO getCustomerById(int id) {
